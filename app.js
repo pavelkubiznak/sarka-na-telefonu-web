@@ -129,7 +129,7 @@
       stav.zbyva = ja.zbyva;
       stav.spravce = ja.spravce;
     } catch (e) {
-      if (["neprihlasen", "nepozvan", "priprava"].includes(e.kod)) return odhlas(e.zprava);
+      if (["neprihlasen", "nepozvan", "priprava"].includes(e.kod)) return odhlas(e.message);
       stav.email = (Ucet.relace && Ucet.relace.email) || "";
     }
     nactiRozhovor();
@@ -281,7 +281,7 @@
         if (nalezeny && nalezeny.stav !== "bezi") vysledek = nalezeny;
         if (!nalezeny) break;
       } catch (e) {
-        if (["neprihlasen", "nepozvan", "priprava"].includes(e.kod)) { stav.bezi = false; return odhlas(e.zprava); }
+        if (["neprihlasen", "nepozvan", "priprava"].includes(e.kod)) { stav.bezi = false; return odhlas(e.message); }
         if (e.kod === "rozhovor") break;
       }
     }
@@ -354,7 +354,7 @@
         return docti(tah, prvky);
       }
       zahodTah(tah, prvky, text);
-      if (["neprihlasen", "nepozvan", "priprava"].includes(e.kod)) return odhlas(e.zprava);
+      if (["neprihlasen", "nepozvan", "priprava"].includes(e.kod)) return odhlas(e.message);
       if (e.kod === "dlouhy" || e.kod === "rozhovor") poznamka(e.message, "Nový rozhovor", novyRozhovor);
       else poznamka(e.message || "Nepovedlo se spojit. Zkontrolujte připojení a zkuste to znovu.");
     } finally {
