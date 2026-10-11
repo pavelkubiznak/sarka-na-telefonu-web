@@ -55,6 +55,12 @@
         co.className = "co";
         co.textContent = z.dotaz;
         li.append(kdo, co);
+        if (z.stav === "chyba" && z.chyba) {
+          const proc = document.createElement("p");
+          proc.className = "male tlumene";
+          proc.textContent = "Důvod: " + z.chyba;
+          li.append(proc);
+        }
         if (z.odpoved) {
           const det = document.createElement("details");
           const sum = document.createElement("summary");
