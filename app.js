@@ -167,10 +167,9 @@
     } else {
       el.innerHTML = '<span class="pise"><i><span></span></i>' + esc(faze || "Píšu odpověď") + "</span>";
     }
-    if (tah.stav !== "bezi") {
-      const z = zdroje(tah);
-      if (z) el.append(z);
-    }
+    // Karty se ukážou hned, jak je server vybere, ještě než dopíše odpověď.
+    const z = zdroje(tah);
+    if (z) el.append(z);
   }
 
   function pridejTah(tah) {
@@ -322,6 +321,7 @@
           stav.rozhovor = data.rozhovor;
           tah.karty = data.karty;
           tah.shoda = data.shoda;
+          if (!tah.odpoved) vykresliOdpoved(prvky.ona, tah, "Píšu odpověď");
         } else if (udalost === "text" || udalost === "znovu") {
           tah.odpoved = udalost === "znovu" ? "" : tah.odpoved + data.t;
           cancelAnimationFrame(kresleni);
