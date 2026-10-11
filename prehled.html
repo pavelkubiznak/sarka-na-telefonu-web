@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Přehled pilotu · Šárka na telefonu</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#16222c">
+<link rel="icon" type="image/png" sizes="32x32" href="ikony/ikona-32.png">
+<link rel="stylesheet" href="styl.css">
+</head>
+<body>
+
+<header class="hlava">
+  <div class="uvnitr">
+    <div class="znacka">
+      <img src="ikony/ikona-192.png" width="32" height="32" alt="">
+      <div><b>Šárka na telefonu</b><span>Přehled pilotu</span></div>
+    </div>
+    <a class="tlacitko" href="./">Rozhovor</a>
+  </div>
+</header>
+
+<main class="prehled">
+  <p id="stavPrehledu" class="tlumene">Načítám…</p>
+
+  <div id="obsah" hidden>
+    <h1>Jak pilot běží</h1>
+    <p class="tlumene male" id="obdobi"></p>
+    <div class="cisla" id="cisla"></div>
+
+    <h2>Na co se lidé ptali</h2>
+    <div class="filtry" id="filtry">
+      <button type="button" data-filtr="vse" aria-pressed="true">Všechny dotazy</button>
+      <button type="button" data-filtr="bez" aria-pressed="false">Žádná karta neseděla</button>
+      <button type="button" data-filtr="zcasti" aria-pressed="false">Karta jen zčásti</button>
+      <button type="button" data-filtr="chyba" aria-pressed="false">Chyby</button>
+    </div>
+    <ul class="dotazy" id="dotazy"></ul>
+    <p class="tlumene male" id="prazdno" hidden>Tady zatím nic není.</p>
+
+    <h2>Lidé</h2>
+    <div class="tabulka"><table>
+      <thead><tr><th>Kdo</th><th>Poprvé</th><th>Naposledy</th><th class="cislo">Dotazů</th><th class="cislo">Rozhovorů</th><th class="cislo">Dnů</th><th>Vrátil se do 14 dnů</th></tr></thead>
+      <tbody id="lide"></tbody>
+    </table></div>
+
+    <h2>Pozvaní</h2>
+    <p class="tlumene male">Přihlásit se může jen adresa z tohoto seznamu. Odebraná adresa se už nepřihlásí, její dotazy v přehledu zůstávají.</p>
+    <div class="tabulka"><table>
+      <thead><tr><th>E-mail</th><th>Jméno</th><th>Stav</th><th></th></tr></thead>
+      <tbody id="pozvani"></tbody>
+    </table></div>
+    <form class="pridat" id="formPozvat" novalidate>
+      <div><label for="novyEmail">E-mail</label><input type="email" id="novyEmail" autocomplete="off" autocapitalize="none" spellcheck="false" required></div>
+      <div><label for="noveJmeno">Jméno (nepovinné)</label><input type="text" id="noveJmeno" autocomplete="off"></div>
+      <button class="hlavni" type="submit">Pozvat</button>
+    </form>
+    <p class="hlaska" id="hlaskaPozvani" role="status"></p>
+  </div>
+</main>
+
+<script src="config.js"></script>
+<script src="spolecne.js"></script>
+<script src="prehled.js"></script>
+</body>
+</html>

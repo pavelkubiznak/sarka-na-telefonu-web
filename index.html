@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Šárka na telefonu</title>
+<meta name="description" content="AI poradce pro nábor postavený na postupech Šárky Ogrocké. Uzavřený pilot pro pozvané.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; connect-src 'self' https://*.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#16222c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Šárka">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="ikony/ikona-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="ikony/ikona-192.png">
+<link rel="apple-touch-icon" href="ikony/ikona-180.png">
+<link rel="preload" href="pismo/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styl.css">
+</head>
+<body>
+
+<header class="hlava">
+  <div class="uvnitr">
+    <div class="znacka">
+      <img src="ikony/ikona-192.png" width="32" height="32" alt="">
+      <div><b>Šárka na telefonu</b><span>AI poradce pro nábor</span></div>
+    </div>
+    <button type="button" id="novy" hidden>Nový rozhovor</button>
+  </div>
+</header>
+
+<div class="upozorneni" id="upozorneni" hidden>
+  <p><b>Odpovídá AI</b> postavená na postupech Šárky Ogrocké, ne Šárka osobně. Jména kandidátů ani jiné osobní údaje sem nepište.</p>
+</div>
+
+<main>
+  <p id="nacitani" class="tlumene">Načítám…</p>
+
+  <section id="vstup" class="vstup" hidden>
+    <h1>Hoří vám něco v náboru?</h1>
+    <p class="uvod">Napište, co se děje, a hned dostanete první krok. Odpovídá AI postavená na postupech recruiterky Šárky Ogrocké.</p>
+
+    <form id="formEmail" novalidate>
+      <p><strong>Pilot je uzavřený, jen pro pozvané.</strong> Zadejte e-mail, na který vám přišla pozvánka.</p>
+      <div>
+        <label for="email">Váš e-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required>
+      </div>
+      <button class="hlavni" type="submit" id="poslatEmail">Poslat přihlašovací e-mail</button>
+      <p class="hlaska" id="hlaskaEmail" role="status"></p>
+    </form>
+
+    <form id="formKod" novalidate hidden>
+      <p>Jestli je adresa <strong id="komu"></strong> na seznamu pozvaných, za chvíli vám přijde e-mail. Klepněte v něm na tlačítko, nebo sem opište kód.</p>
+      <div>
+        <label for="kod">Kód z e-mailu</label>
+        <input type="text" id="kod" name="kod" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="10" required>
+      </div>
+      <button class="hlavni" type="submit" id="overitKod">Přihlásit se</button>
+      <p class="hlaska" id="hlaskaKod" role="status"></p>
+      <p class="male tlumene">Nic nepřišlo? Podívejte se do spamu a zkontrolujte adresu. Nový e-mail jde poslat po minutě.</p>
+      <div class="radek mezi">
+        <button type="button" class="tichy" id="znovu">Poslat znovu</button>
+        <button type="button" class="tichy" id="jinaAdresa">Zadat jinou adresu</button>
+      </div>
+    </form>
+
+    <form id="formOdkaz" novalidate hidden>
+      <p><strong>Ještě jedno klepnutí.</strong> Tímhle se v tomto prohlížeči přihlásíte.</p>
+      <button class="hlavni" type="submit" id="dokoncit">Dokončit přihlášení</button>
+      <p class="hlaska" id="hlaskaOdkaz" role="status"></p>
+    </form>
+
+    <div class="drobne male tlumene">
+      <p>Odpovídá AI, ne Šárka osobně. Jména kandidátů ani jiné osobní údaje do rozhovoru nepište.</p>
+      <p id="vstupKontakt"></p>
+      <p id="vstupOdkazy"></p>
+    </div>
+  </section>
+
+  <section id="rozhovor" hidden>
+    <div class="uvitani" id="uvitani">
+      <h1>Co se děje?</h1>
+      <p>Napište to tak, jak byste to řekli do telefonu. Stačí pár vět.</p>
+      <div class="priklady" id="priklady"><p class="nadpis">Třeba</p></div>
+    </div>
+    <div class="vlakno" id="vlakno" aria-live="polite"></div>
+  </section>
+</main>
+
+<div class="psani" id="psani" hidden>
+  <div class="uvnitr">
+    <form id="formDotaz">
+      <textarea id="dotaz" rows="1" aria-label="Vaše situace" placeholder="Popište situaci" enterkeyhint="send"></textarea>
+      <button class="hlavni" type="submit" id="odeslat">Zeptat se</button>
+    </form>
+    <p class="pata" id="pataKontakt"></p>
+    <p class="pata" id="pataOdkazy"></p>
+  </div>
+</div>
+
+<dialog id="plocha" aria-labelledby="plochaNadpis">
+  <h2 id="plochaNadpis">Šárka na ploše telefonu</h2>
+  <p>Bude po ruce jako aplikace a přihlášení vydrží.</p>
+  <h3>iPhone (Safari)</h3>
+  <ol>
+    <li>Dole klepněte na Sdílet (čtvereček se šipkou).</li>
+    <li>Zvolte Přidat na plochu.</li>
+    <li>Otevřete Šárku z plochy a přihlaste se kódem z e-mailu.</li>
+  </ol>
+  <h3>Android (Chrome)</h3>
+  <ol>
+    <li>Vpravo nahoře klepněte na tři tečky.</li>
+    <li>Zvolte Přidat na plochu nebo Instalovat aplikaci.</li>
+  </ol>
+  <button type="button" class="hlavni" id="plochaZavrit">Rozumím</button>
+</dialog>
+
+<script src="config.js"></script>
+<script src="spolecne.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
