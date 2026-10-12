@@ -6,7 +6,8 @@ window.SARKA = {
  "kontakt": {
   "jmeno": "Šárka Ogrocká",
   "email": "sarka.ogrocka@sintera.cz",
-  "telefon": "",
+  "telefon": "+420 775 338 786",
+  "whatsapp": true,
   "kdy": "Ozveme se nejbližší pracovní den."
  },
  "registrace": "jen_pozvani",

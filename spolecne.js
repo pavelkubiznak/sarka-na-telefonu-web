@@ -199,6 +199,7 @@ function kontaktHtml() {
   if (k.jmeno) casti.push(esc(k.jmeno));
   if (k.email) casti.push('<a href="mailto:' + esc(k.email) + '">' + esc(k.email) + "</a>");
   if (k.telefon) casti.push('<a href="tel:' + esc(k.telefon.replace(/\s/g, "")) + '">' + esc(k.telefon) + "</a>");
+  if (k.telefon && k.whatsapp) casti.push('<a href="https://wa.me/' + esc(k.telefon.replace(/\D/g, "")) + '" target="_blank" rel="noopener">WhatsApp</a>');
   if (!casti.length) return "";
   return "Živý člověk: " + casti.join(", ") + "." + (k.kdy ? " " + esc(k.kdy) : "");
 }
