@@ -9,6 +9,7 @@ window.SARKA = {
   "telefon": "",
   "kdy": "Ozveme se nejbližší pracovní den."
  },
+ "registrace": "jen_pozvani",
  "odkazy": {
   "podminky": "",
   "zasady": ""

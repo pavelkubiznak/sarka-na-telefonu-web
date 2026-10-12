@@ -21,12 +21,15 @@
   function ukazFormular(ktery) {
     for (const id of ["formEmail", "formKod", "formOdkaz"]) $(id).hidden = id !== ktery;
   }
+  function ukazKomu(email) {
+    for (const el of document.querySelectorAll(".komu")) el.textContent = email;
+  }
 
   /* ---------- Přihlášení ---------- */
   async function posliEmail(email, kamHlasit) {
     await server("prihlaseni", { metoda: "POST", telo: { email }, verejne: true });
     Sklad.uloz(KLIC_CEKANI, { email, kdy: Date.now() });
-    $("komu").textContent = email;
+    ukazKomu(email);
     ukazFormular("formKod");
     hlaska("hlaskaKod", kamHlasit === "znovu" ? "Poslali jsme nový e-mail." : "", "dobre");
     $("kod").value = "";
@@ -432,6 +435,13 @@
   /* ---------- Start ---------- */
   $("vstupKontakt").innerHTML = kontaktHtml();
   $("vstupOdkazy").innerHTML = odkazyHtml();
+  // Otevřená registrace: přihlásit se může kdokoli s pracovním e-mailem, ne jen pozvaní.
+  if (C.registrace === "firemni_email") {
+    $("komuJeTo").innerHTML = "<strong>Stačí pracovní e-mail.</strong> Pošleme vám na něj odkaz a kód k přihlášení. Adresy u Seznamu, Gmailu a podobných služeb nebereme.";
+    $("popisEmailu").textContent = "Váš pracovní e-mail";
+    $("poslanoPozvanym").hidden = true;
+    $("poslanoVsem").hidden = false;
+  }
 
   (async () => {
     if (!C.api || !C.supabase) {
@@ -447,7 +457,7 @@
     if (maOdkaz) {
       ukazFormular("formOdkaz");
     } else if (ceka && Date.now() - ceka.kdy < 60 * 60 * 1000) {
-      $("komu").textContent = ceka.email;
+      ukazKomu(ceka.email);
       ukazFormular("formKod");
     } else {
       ukazFormular("formEmail");

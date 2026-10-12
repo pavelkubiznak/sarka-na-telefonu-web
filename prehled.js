@@ -110,7 +110,7 @@
           b.addEventListener("click", () => zmenPozvaneho({ email: p.email, jmeno: p.jmeno, aktivni: !p.aktivni }));
           akce.append(b);
         }
-        tr.append(bunka(p.email), bunka(p.jmeno || ""), bunka(p.spravce ? "správce" : p.aktivni ? "pozvaný" : "odebraný"), akce);
+        tr.append(bunka(p.email), bunka(p.jmeno || ""), bunka(p.spravce ? "správce" : !p.aktivni ? "odebraný" : p.zdroj === "registrace" ? "zaregistroval se sám" : "pozvaný"), akce);
         return tr;
       }),
     );
