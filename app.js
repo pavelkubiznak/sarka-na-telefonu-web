@@ -145,31 +145,12 @@
     window.scrollTo({ top: document.body.scrollHeight });
   }
 
-  function zdroje(tah) {
-    if (!tah.karty || !tah.karty.length || (tah.shoda !== "sedi" && tah.shoda !== "zcasti")) return null;
-    const d = document.createElement("div");
-    d.className = "zdroje";
-    d.append(tah.shoda === "sedi" ? "Z karet:" : "Nejbližší karta, sedí jen zčásti:");
-    for (const k of tah.karty) {
-      const s = document.createElement("span");
-      s.className = "stitek";
-      const b = document.createElement("b");
-      b.textContent = k.id;
-      s.append(b, " · " + k.nazev);
-      d.append(s);
-    }
-    return d;
-  }
-
   function vykresliOdpoved(el, tah, faze) {
     if (tah.odpoved) {
       el.innerHTML = md(tah.odpoved);
     } else {
       el.innerHTML = '<span class="pise"><i><span></span></i>' + esc(faze || "Píšu odpověď") + "</span>";
     }
-    // Karty se ukážou hned, jak je server vybere, ještě než dopíše odpověď.
-    const z = zdroje(tah);
-    if (z) el.append(z);
   }
 
   function pridejTah(tah) {
@@ -304,7 +285,7 @@
     stav.tahy.push(tah);
     $("uvitani").hidden = true;
     const prvky = pridejTah(tah);
-    vykresliOdpoved(prvky.ona, tah, "Hledám v kartách");
+    vykresliOdpoved(prvky.ona, tah, "Hledám v Šárčiných postupech");
     nastavPsani();
     dolu();
 
