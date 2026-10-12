@@ -4,8 +4,8 @@ window.SARKA = {
  "supabase": "https://fpknbrzbqpalguajskut.supabase.co",
  "klic": "sb_publishable_Za5p2nJLZvuGTd1ExQnEgA_w4DYQT2P",
  "kontakt": {
-  "jmeno": "",
-  "email": "",
+  "jmeno": "Šárka Ogrocká",
+  "email": "sarka.ogrocka@sintera.cz",
   "telefon": "",
   "kdy": "Ozveme se nejbližší pracovní den."
  },
