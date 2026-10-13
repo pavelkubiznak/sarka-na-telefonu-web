@@ -8,7 +8,7 @@ window.SARKA = {
   "email": "sarka.ogrocka@sintera.cz",
   "telefon": "+420 775 338 786",
   "whatsapp": true,
-  "kdy": "Volejte kdykoli. Když Šárka zrovna neradí někomu jinému, ráda to zvedne. Jinak se vám ozve zpátky."
+  "kdy": "Šárka vzkazuje: „Volejte kdykoli. Když zrovna neradím někomu jinému nebo nespím, ráda vám to zvednu. Anebo se vám ozvu sama, až se to bude hodit vám.“"
  },
  "registrace": "jen_pozvani",
  "odkazy": {
