@@ -31,11 +31,25 @@
     <p class="tlumene male" id="obdobi"></p>
     <div class="cisla" id="cisla"></div>
 
+    <h2 id="poznamky">Poznámky pro kartotéku</h2>
+    <p class="tlumene male">Sem patří, co byste řekla jinak a co v kartách chybí. Poradce se z poznámek sám neučí: jsou podkladem pro úpravu karet a karta jde ven, až ji Šárka schválí. Poznámku k jedné odpovědi napíšete níž u dotazu, tlačítkem „Řekla bych to jinak“.</p>
+    <form class="podnet-form" id="formPodnet" novalidate>
+      <label for="textPodnetu">Nový případ nebo postup, který v kartách ještě není</label>
+      <textarea id="textPodnetu" rows="4" maxlength="4000" placeholder="Třeba: Když kandidát řekne, že si to musí probrat doma, ptám se…"></textarea>
+      <div class="radek">
+        <button class="hlavni" type="submit" id="ulozitPodnet">Uložit poznámku</button>
+        <p class="hlaska" id="hlaskaPodnet" role="status"></p>
+      </div>
+    </form>
+    <ul class="podnety" id="podnety"></ul>
+    <p class="tlumene male" id="zadnePodnety" hidden>Zatím tu žádná poznámka není.</p>
+
     <h2>Na co se lidé ptali</h2>
     <div class="filtry" id="filtry">
       <button type="button" data-filtr="vse" aria-pressed="true">Všechny dotazy</button>
       <button type="button" data-filtr="bez" aria-pressed="false">Žádná karta neseděla</button>
       <button type="button" data-filtr="zcasti" aria-pressed="false">Karta jen zčásti</button>
+      <button type="button" data-filtr="poznamka" aria-pressed="false">S poznámkou</button>
       <button type="button" data-filtr="chyba" aria-pressed="false">Chyby</button>
     </div>
     <ul class="dotazy" id="dotazy"></ul>

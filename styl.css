@@ -229,4 +229,22 @@ th { font-size: 0.75rem; letter-spacing: 0.03em; color: var(--ink-2); background
 tr:last-child td { border-bottom: 0; }
 td.cislo, th.cislo { text-align: right; font-variant-numeric: tabular-nums; }
 .pridat { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) auto; gap: 0.5rem; align-items: end; margin-top: 0.8rem; }
+
+/* Poznámky pro kartotéku: volná poznámka nahoře, poznámka k odpovědi u každého dotazu */
+.podnet-form { display: grid; gap: 0.5rem; margin: 0.6rem 0 0; }
+.podnet-form label { margin-bottom: 0; }
+.podnet-form textarea { min-height: 6.5rem; resize: vertical; line-height: 1.4; }
+.podnet-form .hlaska { flex: 1 1 10rem; }
+.podnety { list-style: none; padding: 0; margin: 1rem 0 0; border-top: 1px solid var(--line); }
+.podnety li { border-bottom: 1px solid var(--line); padding: 0.7rem 0; }
+.podnety .kdo, .u-odpovedi .kdo { font-size: 0.8rem; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 0.2rem 0.8rem; align-items: baseline; font-variant-numeric: tabular-nums; }
+.podnet-text { margin: 0.3rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.podnet-k { margin: 0.3rem 0 0; font-size: 0.85rem; color: var(--ink-2); overflow-wrap: anywhere; }
+.znak.otevreny { color: var(--warn); }
+.znak.vyrizeny { color: var(--ok); }
+.znak.zamitnuty { color: var(--ink-2); }
+.u-odpovedi { margin-top: 0.45rem; display: grid; gap: 0.45rem; justify-items: start; }
+.u-odpovedi .podnet { width: 100%; border-left: 3px solid var(--accent); padding-left: 0.7rem; }
+.u-odpovedi .podnet-form { width: 100%; margin: 0; }
+.dotazy button.tichy { padding-inline: 0; }
 @media (max-width: 36rem) { .pridat { grid-template-columns: minmax(0, 1fr); } }
